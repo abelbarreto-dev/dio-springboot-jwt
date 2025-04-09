@@ -1,5 +1,6 @@
 package dio.abel.springboot_jwt.service;
 
+import dio.abel.springboot_jwt.exceptions.UserException;
 import dio.abel.springboot_jwt.model.User;
 import dio.abel.springboot_jwt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class UserService {
 
     public ResponseEntity<?> createUser(User user) {
         if (this.repository.existsByUsername(user.getUsername()))
-            throw new RuntimeException("this user already exists");
+            throw new UserException(400, "this user already exists");
 
         var password = user.getPassword();
 
