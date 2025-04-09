@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.time.Instant;
+
 @ControllerAdvice
 public class UserExceptionHandler {
     @ExceptionHandler(UserException.class)
@@ -15,6 +17,6 @@ public class UserExceptionHandler {
     }
 
     private static Response errorResponse(UserException userException) {
-        return new Response(userException.getStatusCode(), userException.getMessage());
+        return new Response(userException.getStatusCode(), userException.getMessage(), Instant.now());
     }
 }
