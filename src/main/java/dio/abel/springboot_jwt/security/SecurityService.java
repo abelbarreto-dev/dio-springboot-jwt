@@ -21,6 +21,8 @@ public class SecurityService {
                         .requestMatchers(HttpMethod.GET,"").hasRole("")
                         .requestMatchers(HttpMethod.GET,"").hasAnyRole("")*/
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
+
+                        .requestMatchers(HttpMethod.POST,"/login").permitAll()
                         .anyRequest().authenticated()
         ).httpBasic(Customizer.withDefaults());
 
